@@ -1,3 +1,21 @@
 Questions
 1. Run the commands sort, wc and uniq on the commands.js file. Explain how they work and what the output was.
+  A: The sort command prints the lines of its input in sorted order. For instance for the bash.js file in this folder, the sort command moved up the commands.evaluateCmd line to top, followed by userInput variable assignment line due to the tab line and the rest lines were placed in order alphabetically.
+  The wc (word count) command finds the number of newlines, words, and byte count in the specified file. The bash.js file has 7 lines, 16 unique words, and 200 characters.
+
 2. Using the pipe (|) connect at least two commands and run it on commands.js. Explain what the output was and why the specific data was outputted.
+  A: sort commands.js | uniq sorted the lines in the file and only output unique values. A duplicate line was added to test this and the output correctly removed the duplicate line.
+
+6. Reverse String
+const reverseString = (string) => {
+  return string.split('').reverse().join('');
+}
+
+const reverseString = (string) => {
+  string = string.split('').reverse();
+  let reversedString =[];
+  string.forEach(element => {
+    reversedString.push(element);
+  });
+  return reversedString.join('');
+}

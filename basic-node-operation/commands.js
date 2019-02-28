@@ -16,9 +16,16 @@ function evaluateCmd(userInput) {
     case "cat":
       commandLibrary.cat(userInputArray.slice(1));
       break;
+    case "head":
+      commandLibrary.head(userInputArray[1], userInputArray[2]);
+      break;
+    case "tail":
+      commandLibrary.tail(userInputArray[1], userInputArray[2]);
+      break;
+    default:
+      console.log('No such command found');
   }
 }
-
 const commandLibrary = {
   "echo": function(userInput) {
     done(userInput);
@@ -28,6 +35,26 @@ const commandLibrary = {
     fs.readFile(fileName, (err, data) => {
       if (err) throw err;
       done(data);
+    });
+  },
+  "head": function(userInputOne, userInputTwo) {
+    fs.readFile(userInputOne, (err, data) => {
+      const newData = data.toString().split('\n');
+      let joinedData = [];
+      for (var i = 0; i <= userInputTwo; i++) {
+        joinedData.push(newData[i]);
+      }
+      console.log(joinedData.join('\n'));
+    });
+  },
+  "tail": function(userInputOne, userInputTwo) {
+    fs.readFile(userInputOne, (err, data) => {
+      const newData = data.toString().split('\n');
+      let joinedData = [];
+      for (var i = userInputTwo; i >= 0; i--) {
+        joinedData.push(newData[i]);
+      }
+      console.log(joinedData.join('\n'));
     });
   }
 };
